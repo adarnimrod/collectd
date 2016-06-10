@@ -1,7 +1,57 @@
 ---
-# tasks file for ansible-role-example
+# tasks file for ansible-role-collectd
 
-- assert:
-    that:
-        - ansible_os_family == 'OpenBSD'
-        - ansible_distribution_release == '5.9'
+- name: Assert
+  assert:
+      that: ansible_os_family in [ 'Debian', 'OpenBSD' ]
+
+- name: APT install
+  when: ansible_pkg_mgr == 'apt'
+  apt:
+      name: collectd
+      install_recommends: no
+      state: present
+      update_cache: yes
+      cache_valid_time: 3600
+
+- name: pkg install
+  when: ansible_pkg_mgr == 'openbsd_pkg'
+  openbsd_pkg:
+      name: '{{ openbsd_collectd_version[ansible_distribution_release] }}'
+      state: present
+
+- name: Create configuration directory
+  file:
+      path: '{{ collectd_conf[ansible_os_family] }}.d'
+      owner: root
+      group: 0
+      mode: 0o0755
+      state: directory
+
+- name: Basic configuration
+  template:
+      src: collectd.conf
+      dest: /etc/collectd.conf
+      owner: root
+      group: 0
+      mode: 0o0644
+  notify:
+  - Restart collectd
+
+- name: Copy configuration templates
+  with_fileglob:
+  - template/collectd.conf.d/*.conf
+  template:
+      src: '{{ item }}'
+      dest: '{{ collectd_conf[ansible_os_family] }}.d'
+      owner: root
+      group: 0
+      mode: 0o0644
+  notify:
+  - Restart collectd
+
+- name: Enabled service
+  service:
+      name: collectd
+      state: started
+      enabled: yes

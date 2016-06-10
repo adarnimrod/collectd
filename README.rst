@@ -1,15 +1,19 @@
-Example
-#######
+collectd
+########
 
-An (empty) example Ansible role complete with working tests out of the box. For
-more information read the `blog post
-<https://www.shore.co.il/blog/ansible-example-role/>`_.
+An Ansible role to install and configure collectd. Configuration templates can
+be placed inside :code:`templates/collectd.conf.d` either inside the role or
+relative to the playbook. Out of the box the only plugin used is log to syslog.
 
 Requirements
 ------------
 
 - `Ansible 2.0 or later <https://www.ansible.com/>`_.
-- `OpenBSD 5.9 or later <http://www.openbsd.org/>`_.
+- Supported OSes:
+  - `OpenBSD 5.9 <http://www.openbsd.org/>`_ (previous versions should
+    also work but aren't tested).
+  - `Debian Jessie <https://www.debian.org/>`_ (previous versions and other
+    distros based on Debian should work but aren't tested).
 
 Role Variables
 --------------

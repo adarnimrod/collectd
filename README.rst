@@ -8,17 +8,12 @@ relative to the playbook. Out of the box the only plugin used is log to syslog.
 Requirements
 ------------
 
-- `Ansible 2.0 or later <https://www.ansible.com/>`_.
-- Supported OSes:
-  - `OpenBSD 5.9 <http://www.openbsd.org/>`_ (previous versions should
-    also work but aren't tested).
-  - `Debian Jessie <https://www.debian.org/>`_ (previous versions and other
-    distros based on Debian should work but aren't tested).
+See :code:`meta/main.yml` and assertions at top of :code:`tasks/main.yml`.
 
 Role Variables
 --------------
 
-None.
+See :code:`defaults/main.yml`.
 
 Dependencies
 ------------

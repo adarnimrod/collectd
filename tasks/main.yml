@@ -50,6 +50,15 @@
   notify:
   - Restart collectd
 
+- name: Alias mail to root
+  lineinfile:
+      dest: '{{ aliases_file[ansible_os_family] }}'
+      create: yes
+      line: '{{ collectd_user[ansible_os_family] }}: root'
+      regexp: '{{ collectd_user[ansible_os_family] }}:'
+  notify:
+      - Update SMTPd database
+
 - name: Enabled service
   service:
       name: collectd

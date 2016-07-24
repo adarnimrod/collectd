@@ -40,7 +40,8 @@
 
 - name: Copy configuration templates
   with_fileglob:
-  - template/collectd.conf.d/*.conf
+  - templates/collectd.conf.d/*.conf
+  - '{{ playbook_dir }}/templates/collectd.conf.d/*.conf'
   template:
       src: '{{ item }}'
       dest: '{{ collectd_conf[ansible_os_family] }}.d'

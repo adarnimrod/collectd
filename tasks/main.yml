@@ -39,7 +39,7 @@
 
 - name: Copy configuration templates
   with_fileglob:
-  - templates/collectd.conf.d/*.conf
+  - '{{ role_path }}/templates/collectd.conf.d/*.conf'
   - '{{ playbook_dir }}/templates/collectd.conf.d/*.conf'
   template:
       src: '{{ item }}'

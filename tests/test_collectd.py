@@ -15,9 +15,9 @@ def test_collectd_config(File, Command):
         '/etc/collectd/collectd.conf.d').is_directory
 
 
-def test_collectd_alias(File, Ansible):
-    ansible_os_family = Ansible('setup')['ansible_facts']['ansible_os_family']
-    if ansible_os_family == 'Debian':
-        assert File('/etc/aliases').contains('collectd: root')
-    elif ansible_os_family == 'OpenBSD':
+def test_collectd_alias(File, SystemInfo):
+    if SystemInfo.type == 'openbsd':
         assert File('/etc/mail/aliases').contains('_collectd: root')
+    elif SystemInfo.type == 'linux' and SystemInfo.distribution in ['debian',
+                                                                    'ubuntu']:
+        assert File('/etc/aliases').contains('collectd: root')

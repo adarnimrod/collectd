@@ -56,10 +56,11 @@
   - Restart collectd
 
 - name: Alias mail to root
+  when: collectd_mail_alias is defined
   lineinfile:
       dest: '{{ aliases_file[ansible_os_family] }}'
       create: yes
-      line: '{{ collectd_user[ansible_os_family] }}: root'
+      line: '{{ collectd_user[ansible_os_family] }}: {{ collectd_mail_alias }}'
       regexp: '{{ collectd_user[ansible_os_family] }}:'
   notify:
       - Update SMTPd database

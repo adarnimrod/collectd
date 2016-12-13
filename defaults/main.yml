@@ -1,2 +1,4 @@
 ---
 # defaults file for collectd
+
+collectd_mail_alias: root

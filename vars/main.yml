@@ -1,5 +1,5 @@
 ---
-# vars file for ansible-role-collectd
+# vars file for collectd
 
 collectd_conf:
     OpenBSD: /etc/collectd.conf

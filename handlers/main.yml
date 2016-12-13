@@ -1,5 +1,5 @@
 ---
-# handlers file for ansible-role-collectd
+# handlers file for collectd
 
 - name: Restart collectd
   service:

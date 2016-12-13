@@ -1,7 +1,12 @@
 ---
-- hosts: ansible-role-collectd-openbsd
+- hosts: collectd-openbsd
   gather_facts: false
-  roles: [ role: ansible-role-openbsd-bootstrap ]
+  roles: [adarnimrod.openbsd-bootstrap]
+
+- hosts: collectd-xenial
+  gather_facts: false
+  roles: [adarnimrod.debian-bootstrap]
 
 - hosts: all
-  roles: [ role: ansible-role-collectd ]
+  strategy: free
+  roles: [collectd]

@@ -1,5 +1,6 @@
 ---
-# tasks file for ansible-role-collectd
+# tasks file for collectd
+
 - name: Assertions
   assert:
       that: ansible_os_family in [ 'Debian', 'OpenBSD' ]

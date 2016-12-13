@@ -1,3 +1,8 @@
+from testinfra.utils.ansible_runner import AnsibleRunner
+
+testinfra_hosts = AnsibleRunner('.molecule/ansible_inventory').get_hosts('all')
+
+
 def test_collectd_service(Service):
     service = Service('collectd')
     assert service.is_running

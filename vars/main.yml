@@ -5,7 +5,7 @@ collectd_conf:
     OpenBSD: /etc/collectd.conf
     Debian: /etc/collectd/collectd.conf
 
-openbsd_collectd_version:
+collectd_openbsd_version:
     '5.5': 'collectd-4.10.2p4'
     '5.6': 'collectd-4.10.2p4'
     '5.7': 'collectd-5.4.1p1'

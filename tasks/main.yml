@@ -7,7 +7,7 @@
           - ansible_os_family in collectd_conf
           - ansible_os_family in aliases_file
           - ansible_os_family in collectd_user
-          - ansible_os_family != 'OpenBSD' or ansible_distribution_release in openbsd_collectd_version
+          - ansible_os_family != 'OpenBSD' or ansible_distribution_release in collectd_openbsd_version
 
 - name: APT install
   when: ansible_pkg_mgr == 'apt'
@@ -21,7 +21,7 @@
 - name: pkg install
   when: ansible_pkg_mgr == 'openbsd_pkg'
   openbsd_pkg:
-      name: '{{ openbsd_collectd_version[ansible_distribution_release] }}'
+      name: '{{ collectd_openbsd_version[ansible_distribution_release] }}'
       state: present
 
 - name: Create configuration directory

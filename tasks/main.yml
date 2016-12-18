@@ -37,7 +37,7 @@
       src: collectd.conf
       dest: /etc/collectd.conf
       owner: root
-      group: 0
+      group: '{{ collectd_user[ansible_os_family] }}'
       mode: 0o0644
   notify:
   - Restart collectd

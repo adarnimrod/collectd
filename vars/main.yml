@@ -11,6 +11,7 @@ collectd_openbsd_version:
     '5.7': 'collectd-5.4.1p1'
     '5.8': 'collectd-5.5.0p1'
     '5.9': 'collectd-5.5.0p3'
+    '6.0': 'collectd-5.5.1'
 
 aliases_file:
     OpenBSD: /etc/mail/aliases

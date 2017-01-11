@@ -16,14 +16,18 @@ vagrant:
     options:
         cpus: 1
   platforms:
-  - name: openbsd
+  - name: openbsd60
     box: fnichol/openbsd-6.0-i386
-  - name: jessie
-    box: nogajun/jessie32
+  - name: openbsd59
+    box: fnichol/openbsd-5.9-i386
   - name: xenial
     box: ubuntu/xenial32
   - name: trusty
     box: ubuntu/trusty32
+  - name: jessie
+    box: debian/jessie32
+  - name: wheezy
+    box: debian/wheezy32
   instances:
   - name: collectd
     options:
@@ -65,6 +69,14 @@ docker:
   - name: collectd-trusty
     image: ubuntu-upstart
     image_version: trusty
+    command: /sbin/init
+    privileged: True
+    environment:
+        DEBIAN_FRONTEND: noninteractive
+        container: docker
+  - name: collectd-wheezy
+    image: debian
+    image_version: wheezy
     command: /sbin/init
     privileged: True
     environment:

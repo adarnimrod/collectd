@@ -12,8 +12,9 @@ def test_collectd_service(Service):
         pass
 
 
-def test_collectd_config(File, Command):
-    assert Command('collectd -t').rc == 0
+def test_collectd_config(File, Command, Sudo):
+    with Sudo():
+        assert Command('collectd -t').rc == 0
     assert File('/etc/collectd.conf').is_file or File(
         '/etc/collectd/collectd.conf').is_file
     assert File('/etc/collectd.conf.d').is_directory or File(
